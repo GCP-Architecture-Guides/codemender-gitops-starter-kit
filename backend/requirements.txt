@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+websockets
+httpx
+pydantic
+google-genai
+google-cloud-firestore
+google-cloud-storage
+google-cloud-bigquery
+google-cloud-secret-manager
+google-adk
+pyjwt
+cryptography
+flask
+requests
+
