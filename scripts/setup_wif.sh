@@ -8,8 +8,8 @@ set -euo pipefail
 #   APPLY_CONDITION=true ./scripts/setup_wif.sh ...   also tightens an existing provider's condition
 #   WIF_CONDITION=repo|strict (default strict): 'repo' admits only this repository; 'strict' also
 #   pins main's relay workflow (apply 'strict' only once the pull_request_target relay is on main).
-PROJECT_ID="${1:-${GOOGLE_CLOUD_PROJECT:-your-gcp-project-id}}"
-REPO="${2:-your-org/your-repo}"
+PROJECT_ID="${1:-${GOOGLE_CLOUD_PROJECT:-YOUR_PROJECT_ID}}"
+REPO="${2:-YOUR_ORG/YOUR_REPO}"
 REGION="${3:-us-central1}"
 POOL_NAME="github-pool"
 PROVIDER_NAME="github-provider"

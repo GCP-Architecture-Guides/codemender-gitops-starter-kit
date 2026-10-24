@@ -33,8 +33,8 @@ FAKE_PAT = "github_pat_" + "11AAAA0000_" * 3
 
 class RedactTest(unittest.TestCase):
     def test_masks_token_in_git_remote_url(self):
-        url = f"https://x-access-token:{FAKE_GHS}@github.com/your-org/your-repo.git"
-        self.assertEqual(redact(url), "https://x-access-token:***@github.com/your-org/your-repo.git")
+        url = f"https://x-access-token:{FAKE_GHS}@github.com/YOUR_ORG/YOUR_REPO.git"
+        self.assertEqual(redact(url), "https://x-access-token:***@github.com/YOUR_ORG/YOUR_REPO.git")
 
     def test_masks_github_token_families(self):
         for prefix in ("ghp_", "gho_", "ghu_", "ghs_", "ghr_"):

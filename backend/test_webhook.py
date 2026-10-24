@@ -89,7 +89,7 @@ if __name__ == "__main__":
             "after": commit_sha,
             "ref": "refs/heads/feature/add-vulnerable-route",
             "repository": {
-                "full_name": os.getenv("GITHUB_REPOSITORY", "your-org/your-repo")
+                "full_name": os.getenv("GITHUB_REPOSITORY", "YOUR_ORG/YOUR_REPO")
             },
             "head_commit": {
                 "message": "Add vulnerable routes/search.ts file"
@@ -107,7 +107,7 @@ if __name__ == "__main__":
             "issue": {
                 "number": 1,
                 "pull_request": {
-                    "html_url": "https://github.com/your-org/your-repo/pull/1"
+                    "html_url": "https://github.com/YOUR_ORG/YOUR_REPO/pull/1"
                 }
             },
             "comment": {
@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 }
             },
             "repository": {
-                "full_name": os.getenv("GITHUB_REPOSITORY", "your-org/your-repo")
+                "full_name": os.getenv("GITHUB_REPOSITORY", "YOUR_ORG/YOUR_REPO")
             }
         }
         asyncio.run(send_mock_webhook("issue_comment", comment_payload))
@@ -138,7 +138,7 @@ if __name__ == "__main__":
                 }
             },
             "repository": {
-                "full_name": os.getenv("GITHUB_REPOSITORY", "your-org/your-repo")
+                "full_name": os.getenv("GITHUB_REPOSITORY", "YOUR_ORG/YOUR_REPO")
             }
         }
         asyncio.run(send_mock_webhook("pull_request", merge_payload))

@@ -73,8 +73,8 @@ export default function Home() {
 
   // Fleet & Monorepo Scaling State
   const [fleetScopeType, setFleetScopeType] = useState<'EXPLICIT_LIST' | 'ORGANIZATION' | 'TOPIC_FILTER'>('EXPLICIT_LIST');
-  const [fleetTargetRepo, setFleetTargetRepo] = useState<string>('your-org/your-repo');
-  const [fleetOrg, setFleetOrg] = useState<string>('your-org');
+  const [fleetTargetRepo, setFleetTargetRepo] = useState<string>('YOUR_ORG/YOUR_REPO');
+  const [fleetOrg, setFleetOrg] = useState<string>('cloud-gtm');
   const [fleetTopics, setFleetTopics] = useState<string>('security,production');
   const [monorepoLocThreshold, setMonorepoLocThreshold] = useState<number>(10000);
   const [fleetModelTier, setFleetModelTier] = useState<string>('gemini-3.8-flash');
@@ -776,7 +776,7 @@ export default function Home() {
                         <div className="flex items-center space-x-3 flex-wrap gap-y-1">
                           {scan.pr_number ? (
                             <a
-                              href={scan.pr_url || `https://github.com/${scan.repo_name || 'your-org/your-repo'}/pull/${scan.pr_number}`}
+                              href={scan.pr_url || `https://github.com/${scan.repo_name || 'YOUR_ORG/YOUR_REPO'}/pull/${scan.pr_number}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="font-bold text-slate-100 hover:text-indigo-400 transition flex items-center space-x-1.5 underline decoration-slate-700 hover:decoration-indigo-400"
@@ -1365,7 +1365,7 @@ export default function Home() {
                       rows={3}
                       value={fleetTargetRepo}
                       onChange={(e) => setFleetTargetRepo(e.target.value)}
-                      placeholder={`e.g.\nyour-org/your-repo`}
+                      placeholder={`e.g.\nYOUR_ORG/YOUR_REPO`}
                       className="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-indigo-500 transition font-mono resize-y"
                     />
                   </div>
@@ -1378,7 +1378,7 @@ export default function Home() {
                       type="text"
                       value={fleetOrg}
                       onChange={(e) => setFleetOrg(e.target.value)}
-                      placeholder="e.g. your-org"
+                      placeholder="e.g. cloud-gtm"
                       className="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-indigo-500 transition font-mono"
                     />
                   </div>

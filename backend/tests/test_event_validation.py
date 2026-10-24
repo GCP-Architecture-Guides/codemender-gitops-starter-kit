@@ -29,7 +29,7 @@ from event_validation import (  # noqa: E402
     validate_relayed_event,
 )
 
-REPO = "your-org/your-repo"
+REPO = "YOUR_ORG/YOUR_REPO"
 BASE = f"https://api.github.com/repos/{REPO}"
 
 

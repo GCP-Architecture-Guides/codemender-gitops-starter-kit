@@ -63,10 +63,10 @@ sequenceDiagram
 No local terminal or IDE is needed. Simply open these **4 browser tabs** before starting:
 
 1. **Tab 1 — CodeMender Starter Kit (Vulnerable Samples):**
-   * 🔗 **[github.com/your-org/your-repo/tree/main/samples](https://github.com/your-org/your-repo/tree/main/samples)**
+   * 🔗 **[github.com/YOUR_ORG/YOUR_REPO/tree/main/samples](https://github.com/YOUR_ORG/YOUR_REPO/tree/main/samples)**
    * Contains ready-to-copy vulnerable files across Python, Go, Node.js, Java, and Terraform.
 2. **Tab 2 — Your Target GitHub Repository:**
-   * Open the GitHub repository wired to your CodeMender deployment (e.g., **[github.com/your-org/your-repo](https://github.com/your-org/your-repo)**).
+   * Open the GitHub repository wired to your CodeMender deployment (e.g., **[github.com/YOUR_ORG/YOUR_REPO](https://github.com/YOUR_ORG/YOUR_REPO)**).
 3. **Tab 3 — CodeMender Web Dashboard (`CodeMender in Action`):**
    * Open your deployed `codemender-dashboard` URL. Confirm the status dot in the top-right header is pulsing green (**Connected**).
 4. **Tab 4 — Gemini Enterprise (GE) BigQuery Analytics Agent:**
@@ -74,15 +74,15 @@ No local terminal or IDE is needed. Simply open these **4 browser tabs** before 
    * Connects directly to the Vertex AI Agent Engine runtime (`codemender-bq-analytics-agent`) to query live BigQuery security and FinOps telemetry in plain English.
 
 ### 📦 Available Vulnerable Samples in the Starter Kit
-From **[`codemender-gitops/samples`](https://github.com/your-org/your-repo/tree/main/samples)**, pick the language that best matches your audience:
+From **[`codemender-gitops/samples`](https://github.com/YOUR_ORG/YOUR_REPO/tree/main/samples)**, pick the language that best matches your audience:
 
 | Sample File in Starter Kit | Stack | Vulnerabilities Included | Demo Recommendation |
 | :--- | :--- | :--- | :--- |
-| **[`vulnerable_app.py`](https://github.com/your-org/your-repo/blob/main/samples/vulnerable_app.py)** | Python (Flask + SQLite3) | SQL Injection (`/login`), Command Injection, SSTI, Hardcoded AWS/Stripe keys | ⭐ **Best for Primary Demo** (Fastest end-to-end sandbox server spin-up & PoC verification) |
-| **[`vulnerable_app.go`](https://github.com/your-org/your-repo/blob/main/samples/vulnerable_app.go)** | Go (`net/http` + SQLite3) | SQL Injection, IDOR, Command Injection, Hardcoded Slack/DB secrets | Great for compiled cloud-native / Go microservices audiences |
-| **[`vulnerable_node.js`](https://github.com/your-org/your-repo/blob/main/samples/vulnerable_node.js)** | Node.js (Express) | Command Injection, Authentication Bypass, Hardcoded secrets | Great for full-stack JavaScript / TypeScript teams |
-| **[`VulnerableController.java`](https://github.com/your-org/your-repo/blob/main/samples/VulnerableController.java)** | Java (Spring / JDK) | SQL Injection, Path Traversal, Insecure Deserialization | Great for enterprise Java engineering teams |
-| **[`main.tf`](https://github.com/your-org/your-repo/blob/main/samples/main.tf)** | Terraform (GCP IaC) | Public GCS bucket (`allUsers`), Open Cloud SQL (`0.0.0.0/0`, unencrypted SSL) | Great for Cloud Infrastructure / DevSecOps teams |
+| **[`vulnerable_app.py`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/vulnerable_app.py)** | Python (Flask + SQLite3) | SQL Injection (`/login`), Command Injection, SSTI, Hardcoded AWS/Stripe keys | ⭐ **Best for Primary Demo** (Fastest end-to-end sandbox server spin-up & PoC verification) |
+| **[`vulnerable_app.go`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/vulnerable_app.go)** | Go (`net/http` + SQLite3) | SQL Injection, IDOR, Command Injection, Hardcoded Slack/DB secrets | Great for compiled cloud-native / Go microservices audiences |
+| **[`vulnerable_node.js`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/vulnerable_node.js)** | Node.js (Express) | Command Injection, Authentication Bypass, Hardcoded secrets | Great for full-stack JavaScript / TypeScript teams |
+| **[`VulnerableController.java`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/VulnerableController.java)** | Java (Spring / JDK) | SQL Injection, Path Traversal, Insecure Deserialization | Great for enterprise Java engineering teams |
+| **[`main.tf`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/main.tf)** | Terraform (GCP IaC) | Public GCS bucket (`allUsers`), Open Cloud SQL (`0.0.0.0/0`, unencrypted SSL) | Great for Cloud Infrastructure / DevSecOps teams |
 
 ---
 
@@ -95,7 +95,7 @@ From **[`codemender-gitops/samples`](https://github.com/your-org/your-repo/tree/
 ### UI Click-by-Click Instructions
 
 1. **Copy a Vulnerable Sample from the Starter Kit (Browser Tab 1):**
-   * Go to **[`codemender-gitops/tree/main/samples`](https://github.com/your-org/your-repo/tree/main/samples)** and click on **[`vulnerable_app.py`](https://github.com/your-org/your-repo/blob/main/samples/vulnerable_app.py)**.
+   * Go to **[`codemender-gitops/tree/main/samples`](https://github.com/YOUR_ORG/YOUR_REPO/tree/main/samples)** and click on **[`vulnerable_app.py`](https://github.com/YOUR_ORG/YOUR_REPO/blob/main/samples/vulnerable_app.py)**.
    * Click the **Copy raw file** icon (two overlapping squares in the top-right corner of the code viewer).
 
 2. **Create a New File in Your Target GitHub Repo (Browser Tab 2):**
@@ -241,7 +241,7 @@ Finish your walkthrough by clicking through the other two tabs at the top of the
 > *"What if a developer wants to check a snippet of code before even creating a branch or PR? The Interactive Sandbox gives them an in-browser editor with live AI pre-checks and a Human-in-the-Loop patch approval modal."*
 
 1. Click **Interactive Sandbox** in the top navigation bar of the Dashboard.
-2. The left pane displays an in-browser code editor (pre-populated with a vulnerable snippet, or you can paste any code from the **[Starter Kit Samples](https://github.com/your-org/your-repo/tree/main/samples)**).
+2. The left pane displays an in-browser code editor (pre-populated with a vulnerable snippet, or you can paste any code from the **[Starter Kit Samples](https://github.com/YOUR_ORG/YOUR_REPO/tree/main/samples)**).
 3. In the **PROMPT / INTENT** field below the editor, enter what the code is supposed to do (e.g., *"Authenticate user login credentials securely"*).
 4. Click **Submit for Review**.
 5. Point out the live results on the right-hand panel:

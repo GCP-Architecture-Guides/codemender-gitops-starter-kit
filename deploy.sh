@@ -33,9 +33,9 @@
 #   printf '%s' "$GITHUB_PAT" | ./deploy.sh --token-stdin [--iap-audience AUD] [--runtime-sa EMAIL]
 #
 # Options:
-#   -p, --project ID        GCP project (default: your-gcp-project-id)
+#   -p, --project ID        GCP project (default: YOUR_PROJECT_ID)
 #   -r, --region REGION     Region (default: us-central1)
-#   -g, --repo OWNER/REPO   The one repository the services may act on (default: your-org/your-repo)
+#   -g, --repo OWNER/REPO   The one repository the services may act on (default: YOUR_ORG/YOUR_REPO)
 #   --sha SHA               Image tag to create missing services from (default: git HEAD)
 #   --token-stdin           Read the GitHub token for a new GITHUB_TOKEN secret from stdin
 #   --iap-audience AUD      IAP audience of the dashboard's load balancer backend
@@ -45,9 +45,9 @@
 # ==============================================================================
 set -euo pipefail
 
-PROJECT_ID="your-gcp-project-id"
+PROJECT_ID="YOUR_PROJECT_ID"
 REGION="us-central1"
-REPO="your-org/your-repo"
+REPO="YOUR_ORG/YOUR_REPO"
 SHA=""
 TOKEN_STDIN=false
 IAP_AUDIENCE=""

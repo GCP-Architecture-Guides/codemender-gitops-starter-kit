@@ -102,16 +102,16 @@ class GitWorkspaceRepoIdentityTest(unittest.TestCase):
     """GEMINI.md 'Dynamic Repository Target Identity': repo= is mandatory, with no env or placeholder fallback."""
 
     def test_missing_repo_is_rejected_even_with_env_default(self):
-        with mock.patch.dict(os.environ, {"GITHUB_REPOSITORY": "your-org/your-repo"}):
+        with mock.patch.dict(os.environ, {"GITHUB_REPOSITORY": "YOUR_ORG/YOUR_REPO"}):
             with self.assertRaises(ValueError):
                 GitWorkspace("unittest-no-repo")
             with self.assertRaises(ValueError):
                 GitWorkspace("unittest-no-repo", repo="")
 
     def test_explicit_repo_is_used(self):
-        ws = GitWorkspace("unittest-repo", repo="your-org/your-repo")
-        self.assertEqual(ws.repo, "your-org/your-repo")
-        self.assertEqual(ws._remote_url(), "https://github.com/your-org/your-repo.git")
+        ws = GitWorkspace("unittest-repo", repo="YOUR_ORG/YOUR_REPO")
+        self.assertEqual(ws.repo, "YOUR_ORG/YOUR_REPO")
+        self.assertEqual(ws._remote_url(), "https://github.com/YOUR_ORG/YOUR_REPO.git")
 
 
 class GitWorkspaceAuthTest(unittest.TestCase):
@@ -136,7 +136,7 @@ class GitWorkspaceAuthTest(unittest.TestCase):
         shutil.rmtree(f"/tmp/session-{self.session_id}", ignore_errors=True)
 
     def test_clone_uses_tokenless_url_and_keeps_token_in_memory(self):
-        ws = GitWorkspace(self.session_id, repo="your-org/your-repo")
+        ws = GitWorkspace(self.session_id, repo="YOUR_ORG/YOUR_REPO")
         calls = []
 
         async def fake_run(cmd, cwd=None):
@@ -148,14 +148,14 @@ class GitWorkspaceAuthTest(unittest.TestCase):
 
         clone_cmd = calls[0]
         self.assertEqual(clone_cmd[:2], ["git", "clone"])
-        self.assertIn("https://github.com/your-org/your-repo.git", clone_cmd)
+        self.assertIn("https://github.com/YOUR_ORG/YOUR_REPO.git", clone_cmd)
         for call in calls:
             for arg in call:
                 self.assertNotIn(FAKE_TOKEN, str(arg))
                 self.assertNotIn("x-access-token", str(arg))
 
         # Another GitWorkspace on the same checkout (e.g. a later push) finds the in-memory token.
-        other = GitWorkspace(self.session_id, repo="your-org/your-repo")
+        other = GitWorkspace(self.session_id, repo="YOUR_ORG/YOUR_REPO")
         self.assertEqual(asyncio.run(other._resolve_token()), FAKE_TOKEN)
 
     def test_auth_env_only_for_remote_commands(self):

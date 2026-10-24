@@ -33,7 +33,7 @@ CM = main.cm_verify.__globals__  # the real cm_tools module's namespace
 import task_context  # noqa: E402
 from tests import test_status_semantics as status_tests  # noqa: E402
 
-REPO = "your-org/your-repo"
+REPO = "YOUR_ORG/YOUR_REPO"
 SHA = "b" * 40
 
 # Live schemas (bq show --schema, 2026-10-23). Rows must use exactly these columns.

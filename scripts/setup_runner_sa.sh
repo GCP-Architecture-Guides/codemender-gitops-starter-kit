@@ -38,7 +38,7 @@
 # ==============================================================================
 set -euo pipefail
 
-PROJECT_ID="${PROJECT_ID:-your-gcp-project-id}"
+PROJECT_ID="${PROJECT_ID:-YOUR_PROJECT_ID}"
 SA_NAME="${SA_NAME:-codemender-runner}"
 SA_EMAIL="${SA_NAME}@${PROJECT_ID}.iam.gserviceaccount.com"
 BUCKET="gs://${PROJECT_ID}-artifacts"

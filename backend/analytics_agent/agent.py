@@ -101,7 +101,7 @@ def run_aggregation(table_name: str, metric: str, dimension: str, filters: str =
         table_name: Business table name.
         metric: Aggregation expression (e.g., "count", "sum(cost_usd)", "average(time_to_remediate_sec)").
         dimension: Column name to group by.
-        filters: Optional raw SQL WHERE clause filter expression (e.g. "repo_name = 'your-org/your-repo'").
+        filters: Optional raw SQL WHERE clause filter expression (e.g. "repo_name = 'YOUR_ORG/YOUR_REPO'").
     """
     if table_name not in TABLE_CATALOGUE:
         return f"Error: Table '{table_name}' is not in the catalogue."
@@ -292,7 +292,7 @@ def get_file_vulnerability_history(file_path: str, repo_name: str = None) -> str
     
     Args:
         file_path: The relative file path to inspect (e.g. 'routes/search.ts' or 'app.py').
-        repo_name: Optional repository name filter (e.g. 'your-org/your-repo').
+        repo_name: Optional repository name filter (e.g. 'YOUR_ORG/YOUR_REPO').
     """
     clean_file = file_path.strip().replace("'", "\\'")
     where_clauses = [f"target_file LIKE '%{clean_file}%'"]
@@ -327,7 +327,7 @@ def query_org_active_vulnerabilities(severity: str = None, repo_name: str = None
     
     Args:
         severity: Optional severity filter (e.g. 'CRITICAL', 'HIGH').
-        repo_name: Optional repository filter (e.g. 'your-org/your-repo').
+        repo_name: Optional repository filter (e.g. 'YOUR_ORG/YOUR_REPO').
     """
     where_clauses = []
     if severity:

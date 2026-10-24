@@ -23,7 +23,7 @@
 # The frontend source has not changed since that image was built (883f87e).
 # To rebuild the UI from source: restore the node:20-alpine stage (npm install + npx next build)
 # and commit a package-lock.json that matches frontend/package.json.
-FROM us-central1-docker.pkg.dev/your-gcp-project-id/cloud-run-source-deploy/codemender-backend@sha256:9e73724ba937095cd9fae9fd3cdcb3340045d3696b5bdd462d972f98a73355d8 AS frontend-builder
+FROM us-central1-docker.pkg.dev/YOUR_PROJECT_ID/cloud-run-source-deploy/codemender-backend@sha256:9e73724ba937095cd9fae9fd3cdcb3340045d3696b5bdd462d972f98a73355d8 AS frontend-builder
 
 # Stage 2: Build the production runtime container
 FROM python:3.12-slim

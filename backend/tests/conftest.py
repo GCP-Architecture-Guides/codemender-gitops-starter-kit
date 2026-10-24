@@ -24,7 +24,7 @@ import tempfile
 
 _ISOLATED = tempfile.mkdtemp(prefix="codemender-tests-")
 
-os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "your-gcp-project-id")
+os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "YOUR_PROJECT_ID")
 os.environ.setdefault("GOOGLE_CLOUD_LOCATION", "global")
 os.environ.setdefault("GOOGLE_GENAI_USE_VERTEXAI", "true")
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(_ISOLATED, "no-adc.json")

@@ -29,7 +29,7 @@ _CM_PROJECT_FILE = ".cm_project"
 
 def _artifacts_bucket_name() -> str:
     """GCS bucket holding session artifacts and CodeMender state bundles."""
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT") or "your-gcp-project-id"
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT") or "YOUR_PROJECT_ID"
     return f"{project_id}-artifacts"
 
 

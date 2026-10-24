@@ -1,4 +1,4 @@
-# Exact versions installed in the image currently running in your-gcp-project-id
+# Exact versions installed in the image currently running in YOUR_PROJECT_ID
 # (Cloud Build 537971fd, 2026-09-04). Used as pip constraints so rebuilds don't drift.
 aiohappyeyeballs==2.7.1
 aiohttp==3.14.3

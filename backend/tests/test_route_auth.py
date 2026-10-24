@@ -87,13 +87,13 @@ class RouteAuthTest(unittest.TestCase):
             return None
 
         async def scheduler(_request, audience, allowed):
-            return "scheduler@your-gcp-project-id.iam.gserviceaccount.com" if audience and allowed else None
+            return "scheduler@YOUR_PROJECT_ID.iam.gserviceaccount.com" if audience and allowed else None
 
         async def token():
             return "token"
 
         env = {"MAINTENANCE_OIDC_AUDIENCE": "https://example.run.app",
-               "MAINTENANCE_INVOKERS": "scheduler@your-gcp-project-id.iam.gserviceaccount.com"}
+               "MAINTENANCE_INVOKERS": "scheduler@YOUR_PROJECT_ID.iam.gserviceaccount.com"}
         with mock.patch.dict(os.environ, env), \
                 mock.patch.object(main, "get_iap_user_email", no_iap), \
                 mock.patch.object(main, "verify_google_oidc", scheduler), \

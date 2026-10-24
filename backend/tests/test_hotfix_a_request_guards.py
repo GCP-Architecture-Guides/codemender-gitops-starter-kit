@@ -113,8 +113,8 @@ class WebhookOnlyMiddlewareTest(unittest.TestCase):
 
 class ResolveScanTargetTest(unittest.TestCase):
 
-    RECORD = {"repo_name": "your-org/your-repo", "pr_number": 42, "branch_name": "feature"}
-    ENROLLED = parse_allowed_repos("your-org/your-repo")
+    RECORD = {"repo_name": "YOUR_ORG/YOUR_REPO", "pr_number": 42, "branch_name": "feature"}
+    ENROLLED = parse_allowed_repos("YOUR_ORG/YOUR_REPO")
 
     def test_missing_record_is_404(self):
         target = resolve_scan_target(None, self.ENROLLED)
@@ -131,7 +131,7 @@ class ResolveScanTargetTest(unittest.TestCase):
     def test_repo_and_pr_come_from_the_record(self):
         target = resolve_scan_target(self.RECORD, self.ENROLLED)
         self.assertTrue(target.allowed)
-        self.assertEqual((target.repo_name, target.pr_number), ("your-org/your-repo", 42))
+        self.assertEqual((target.repo_name, target.pr_number), ("YOUR_ORG/YOUR_REPO", 42))
 
     def test_unenrolled_repository_is_403(self):
         record = dict(self.RECORD, repo_name="evil/repo")
@@ -145,7 +145,7 @@ class ResolveScanTargetTest(unittest.TestCase):
 
     def test_403_wins_over_a_body_mismatch(self):
         record = dict(self.RECORD, repo_name="evil/repo")
-        target = resolve_scan_target(record, self.ENROLLED, body_repo_name="your-org/your-repo")
+        target = resolve_scan_target(record, self.ENROLLED, body_repo_name="YOUR_ORG/YOUR_REPO")
         self.assertEqual(target.status_code, 403)
 
     def test_matching_body_values_are_accepted(self):
@@ -168,7 +168,7 @@ class ResolveScanTargetTest(unittest.TestCase):
                 self.assertEqual(resolve_scan_target(self.RECORD, self.ENROLLED, body_pr_number=body_pr).status_code, 400)
 
     def test_body_pr_for_a_record_without_pr_is_400(self):
-        record = {"repo_name": "your-org/your-repo"}
+        record = {"repo_name": "YOUR_ORG/YOUR_REPO"}
         self.assertEqual(resolve_scan_target(record, self.ENROLLED, body_pr_number=5).status_code, 400)
         target = resolve_scan_target(record, self.ENROLLED)
         self.assertTrue(target.allowed)

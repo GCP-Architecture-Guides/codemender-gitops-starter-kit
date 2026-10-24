@@ -233,7 +233,7 @@ class CmSandboxDefaultTest(unittest.TestCase):
         self.assertIsNone(re.search(r"""setdefault\(\s*["']CM_DISABLE_SANDBOX""", cm_source))
 
     def test_cm_env_forwards_the_lever_but_never_injects_it(self):
-        base = {"PATH": "/usr/bin", "GOOGLE_CLOUD_PROJECT": "your-gcp-project-id"}
+        base = {"PATH": "/usr/bin", "GOOGLE_CLOUD_PROJECT": "YOUR_PROJECT_ID"}
         self.assertNotIn("CM_DISABLE_SANDBOX", cm_tools._cm_subprocess_env(dict(base)))
         env = cm_tools._cm_subprocess_env({**base, "CM_DISABLE_SANDBOX": "true"})
         self.assertEqual(env.get("CM_DISABLE_SANDBOX"), "true")

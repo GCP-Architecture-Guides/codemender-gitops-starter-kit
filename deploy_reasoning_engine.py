@@ -5,12 +5,12 @@ import os
 import sys
 
 # Default project configs
-PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "your-gcp-project-id")
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", "YOUR_PROJECT_ID")
 LOCATION = os.getenv("GOOGLE_CLOUD_LOCATION", "us-central1")
 STAGING_BUCKET = os.getenv("STAGING_BUCKET_NAME", f"gs://{PROJECT_ID}-artifacts")
 
 # Stable resource ID for the analytics agent to prevent duplicate resources (set to empty to deploy a new instance)
-STABLE_ENGINE_ID = os.getenv("REASONING_ENGINE_RESOURCE_ID", "projects/135215686309/locations/us-central1/reasoningEngines/394814284569247744")
+STABLE_ENGINE_ID = os.getenv("REASONING_ENGINE_RESOURCE_ID", "projects/YOUR_PROJECT_NUMBER/locations/us-central1/reasoningEngines/394814284569247744")
 
 # Make sure backend folder is in path
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "backend"))

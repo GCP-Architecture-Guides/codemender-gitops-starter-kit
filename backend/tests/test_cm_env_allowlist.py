@@ -51,7 +51,7 @@ BASE_ENV = {
     "NODE_PATH": "/usr/local/lib/node_modules",
     "GOOGLE_CLOUD_LOCATION": "global",
     "GOOGLE_APPLICATION_CREDENTIALS": "/secrets/adc.json",
-    "CLOUDSDK_CORE_PROJECT": "your-gcp-project-id",
+    "CLOUDSDK_CORE_PROJECT": "YOUR_PROJECT_ID",
     "K_SERVICE": "codemender-backend",
     "K_REVISION": "codemender-backend-00042",
     "CM_DISABLE_SANDBOX": "true",
@@ -79,7 +79,7 @@ BASE_ENV = {
     "MY_ACCESS_TOKEN": "not-forwarded",
     "RANDOM_SETTING": "not-forwarded",
     "PORT": "8080",
-    "CODEMENDER_PROJECT_ID": "your-gcp-project-id",
+    "CODEMENDER_PROJECT_ID": "YOUR_PROJECT_ID",
     "GOOGLE_CLOUD_PROJECT": "some-other-project",
 }
 
@@ -121,10 +121,10 @@ class CmSubprocessEnvTest(unittest.TestCase):
 
     def test_project_override(self):
         env = cm_tools._cm_subprocess_env(BASE_ENV)
-        self.assertEqual(env["GOOGLE_CLOUD_PROJECT"], "your-gcp-project-id")
-        self.assertEqual(env["GCLOUD_PROJECT"], "your-gcp-project-id")
-        env = cm_tools._cm_subprocess_env({"PATH": "/usr/bin", "GOOGLE_CLOUD_PROJECT": "your-gcp-project-id"})
-        self.assertEqual(env["GCLOUD_PROJECT"], "your-gcp-project-id")
+        self.assertEqual(env["GOOGLE_CLOUD_PROJECT"], "YOUR_PROJECT_ID")
+        self.assertEqual(env["GCLOUD_PROJECT"], "YOUR_PROJECT_ID")
+        env = cm_tools._cm_subprocess_env({"PATH": "/usr/bin", "GOOGLE_CLOUD_PROJECT": "YOUR_PROJECT_ID"})
+        self.assertEqual(env["GCLOUD_PROJECT"], "YOUR_PROJECT_ID")
 
     def test_missing_project_fails_fast(self):
         # No placeholder or ambient project: cm must never run against an unintended project.

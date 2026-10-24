@@ -33,7 +33,7 @@ import gcs_helpers  # noqa: E402  (imported lazily by main; patched below)
 
 FAKE_TOKEN = "ghp_" + "F4k3F4k3F4" * 3 + "abcdef"
 
-REPO = "your-org/your-repo"
+REPO = "YOUR_ORG/YOUR_REPO"
 HEAD = "a" * 40
 NEWER = "b" * 40
 

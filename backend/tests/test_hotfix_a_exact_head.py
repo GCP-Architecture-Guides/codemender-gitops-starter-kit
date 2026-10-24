@@ -107,7 +107,7 @@ class EnsureExactHeadStubbedTest(unittest.TestCase):
         ):
             patcher.start()
             self.addCleanup(patcher.stop)
-        self.ws = GitWorkspace(f"unittest-{uuid.uuid4().hex[:12]}", repo="your-org/your-repo")
+        self.ws = GitWorkspace(f"unittest-{uuid.uuid4().hex[:12]}", repo="YOUR_ORG/YOUR_REPO")
 
     def _run(self, fake, head_sha=HEAD_SHA, pr_number=None):
         self.ws._run_command = fake

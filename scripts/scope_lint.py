@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Scope lint: fail if tracked files reference out-of-scope projects, folders or identities.
 
-This deployment is scoped to GCP project your-gcp-project-id and the GitHub repo
-your-org/your-repo. References to other projects, repos, local folders or
+This deployment is scoped to GCP project YOUR_PROJECT_ID and the GitHub repo
+YOUR_ORG/YOUR_REPO. References to other projects, repos, local folders or
 personal identities caused the cross-project issues found in the Oct 2026 review.
 
 Usage: python scripts/scope_lint.py [--warn]

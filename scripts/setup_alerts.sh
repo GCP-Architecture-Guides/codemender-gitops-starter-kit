@@ -34,7 +34,7 @@
 # ==============================================================================
 set -euo pipefail
 
-PROJECT_ID="${PROJECT_ID:-your-gcp-project-id}"
+PROJECT_ID="${PROJECT_ID:-YOUR_PROJECT_ID}"
 export CLOUDSDK_ACTIVE_CONFIG_NAME="${CLOUDSDK_ACTIVE_CONFIG_NAME:-codemender-gitops}"
 SCOPE='resource.type="cloud_run_revision" AND resource.labels.service_name=~"^codemender-(webhook|backend|dashboard)$"'
 WORK="$(mktemp -d)"

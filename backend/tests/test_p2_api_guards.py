@@ -220,7 +220,7 @@ class DismissalRequestTest(unittest.TestCase):
 class DismissalTargetTest(unittest.TestCase):
 
     def setUp(self):
-        self.allowed = parse_allowed_repos("your-org/your-repo")
+        self.allowed = parse_allowed_repos("YOUR_ORG/YOUR_REPO")
         self.now = time.time()
 
     def test_scan_target_errors_pass_through(self):
@@ -231,7 +231,7 @@ class DismissalTargetTest(unittest.TestCase):
     def test_recent_in_flight_scan_is_busy(self):
         for status in ("QUEUED", "CLONING", "PRE_CHECKS", "RUNNING", "running"):
             with self.subTest(status=status):
-                record = {"repo_name": "your-org/your-repo", "status": status, "updated_at": self.now - 60}
+                record = {"repo_name": "YOUR_ORG/YOUR_REPO", "status": status, "updated_at": self.now - 60}
                 check = check_dismissal_target(record, self.allowed, self.now)
                 self.assertEqual(check.status_code, 409)
                 self.assertIn("busy", check.detail)
@@ -240,10 +240,10 @@ class DismissalTargetTest(unittest.TestCase):
         for status, updated in (("RUNNING", self.now - 3 * 3600), ("COMPLETED", self.now), ("FAILED", self.now),
                                 ("DEFERRED", self.now), ("RUNNING", None)):
             with self.subTest(status=status, updated=updated):
-                record = {"repo_name": "your-org/your-repo", "status": status, "updated_at": updated, "pr_number": 7}
+                record = {"repo_name": "YOUR_ORG/YOUR_REPO", "status": status, "updated_at": updated, "pr_number": 7}
                 check = check_dismissal_target(record, self.allowed, self.now)
                 self.assertTrue(check.allowed)
-                self.assertEqual(check.repo_name, "your-org/your-repo")
+                self.assertEqual(check.repo_name, "YOUR_ORG/YOUR_REPO")
                 self.assertEqual(check.scan_status, status.upper())
 
 

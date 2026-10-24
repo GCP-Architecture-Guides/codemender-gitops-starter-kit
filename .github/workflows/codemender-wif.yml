@@ -36,9 +36,9 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           token_format: 'id_token'
-          workload_identity_provider: 'projects/135215686309/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
-          service_account: 'codemender-trigger@your-gcp-project-id.iam.gserviceaccount.com'
-          id_token_audience: 'https://codemender-webhook-135215686309.us-central1.run.app'
+          workload_identity_provider: 'projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'codemender-trigger@YOUR_PROJECT_ID.iam.gserviceaccount.com'
+          id_token_audience: 'https://codemender-webhook-YOUR_PROJECT_NUMBER.us-central1.run.app'
           id_token_include_email: true
           create_credentials_file: false
 
@@ -48,7 +48,7 @@ jobs:
           # The webhook expects GitHub's event names; pull_request_target carries a pull_request payload.
           EVENT_NAME: ${{ github.event_name == 'pull_request_target' && 'pull_request' || github.event_name }}
         run: |
-          curl -sS -f -X POST "https://codemender-webhook-135215686309.us-central1.run.app/github-webhook" \
+          curl -sS -f -X POST "https://codemender-webhook-YOUR_PROJECT_NUMBER.us-central1.run.app/github-webhook" \
             -H "Authorization: Bearer ${ID_TOKEN}" \
             -H "Content-Type: application/json" \
             -H "X-GitHub-Event: ${EVENT_NAME}" \

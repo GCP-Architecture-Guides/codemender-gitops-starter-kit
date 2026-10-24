@@ -30,7 +30,7 @@ from tests.main_loader import import_real_main  # noqa: E402
 
 main = import_real_main()
 
-REPO = "your-org/your-repo"
+REPO = "YOUR_ORG/YOUR_REPO"
 BASE = f"https://api.github.com/repos/{REPO}"
 HEAD = "a" * 40
 

@@ -114,7 +114,7 @@ class RepoAllowlistTest(unittest.TestCase):
         self.assertTrue(is_repo_allowed("any/repo", allowed))
 
     def test_allowlist_is_trimmed_and_case_insensitive(self):
-        allowed = parse_allowed_repos(" your-org/your-repo , Org/Other ,, ")
+        allowed = parse_allowed_repos(" YOUR_ORG/YOUR_REPO , Org/Other ,, ")
         self.assertTrue(is_repo_allowed("Cloud-GTM/CodeMender-GitOps", allowed))
         self.assertTrue(is_repo_allowed("org/other", allowed))
         self.assertFalse(is_repo_allowed("evil/repo", allowed))

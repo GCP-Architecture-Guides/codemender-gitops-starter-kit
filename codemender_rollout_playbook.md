@@ -279,7 +279,7 @@ async def process_pr_scan_event(payload: dict, run_id: str = None):
     # if active_tasks.get(f"pr-{pr_number}") != run_id: return
     
     # 1. At Scan Start: Set gate status to PENDING
-    dashboard_url = f"https://codemender-dashboard-135215686309.us-central1.run.app/scans/{head_sha}"
+    dashboard_url = f"https://codemender-dashboard-YOUR_PROJECT_NUMBER.us-central1.run.app/scans/{head_sha}"
     await set_commit_status(
         repo=repo_name,
         commit_sha=head_sha,

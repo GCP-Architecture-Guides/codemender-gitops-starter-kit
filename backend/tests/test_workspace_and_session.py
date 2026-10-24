@@ -141,7 +141,7 @@ class TaskSessionTest(unittest.TestCase):
 
 class DashboardDelegationTest(unittest.TestCase):
     def setUp(self):
-        scan = {"repo_name": "your-org/your-repo", "pr_number": 7, "branch_name": "feature",
+        scan = {"repo_name": "YOUR_ORG/YOUR_REPO", "pr_number": 7, "branch_name": "feature",
                 "findings": [{"id": "f1", "severity": "CRITICAL"}]}
         snap = types.SimpleNamespace(exists=True, to_dict=lambda: dict(scan))
         fake_db = types.SimpleNamespace(collection=lambda _n: types.SimpleNamespace(
@@ -155,7 +155,7 @@ class DashboardDelegationTest(unittest.TestCase):
         patches = [
             mock.patch.object(sys.modules["database"], "db", fake_db, create=True),
             mock.patch.object(main, "get_iap_user_email", verified),
-            mock.patch.object(main, "ALLOWED_REPOS", frozenset({"your-org/your-repo"})),
+            mock.patch.object(main, "ALLOWED_REPOS", frozenset({"YOUR_ORG/YOUR_REPO"})),
             mock.patch.object(main, "verify_findings_task", self.verify_task),
             mock.patch.object(main, "fix_findings_task", self.fix_task),
             mock.patch.object(main, "is_lock_held", lambda _lock_id: self.busy),

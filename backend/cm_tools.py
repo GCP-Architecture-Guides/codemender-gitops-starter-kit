@@ -773,7 +773,8 @@ async def _run_cm_cmd(cmd: list, session_id: str, run_info: dict = None) -> str:
     # Global concurrency gate for CLI sessions to prevent outbound TLS socket saturation on Cloud Run
     global _CLI_SEMAPHORE
     if "_CLI_SEMAPHORE" not in globals() or _CLI_SEMAPHORE is None:
-        _CLI_SEMAPHORE = asyncio.Semaphore(1)
+        max_concurrent = int(os.environ.get('MAX_CONCURRENT_CLI', '10'))
+        _CLI_SEMAPHORE = asyncio.Semaphore(max_concurrent)
         
     # find/verify/fix: CM_*_TIMEOUT_SEC; init and other subcommands keep the fixed default.
     timeout_task = task if any(sub in cmd for sub in ("find", "verify", "fix")) else "cm_other"

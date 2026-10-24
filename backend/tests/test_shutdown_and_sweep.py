@@ -39,7 +39,7 @@ import lock_logic  # noqa: E402
 import maintenance  # noqa: E402
 import task_context  # noqa: E402
 
-REPO = "your-org/your-repo"
+REPO = "YOUR_ORG/YOUR_REPO"
 NOW = 1_800_000_000.0
 
 

@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import iap_auth  # noqa: E402
 
-AUDIENCE = "/projects/your-project-number/global/backendServices/your-backend-service-id"
+AUDIENCE = "/projects/YOUR_PROJECT_NUMBER/global/backendServices/7102880719443424037"
 
 
 class _Req:

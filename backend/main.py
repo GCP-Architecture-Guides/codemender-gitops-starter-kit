@@ -189,7 +189,7 @@ async def health_check():
     return {
         "status": "healthy",
         "service": "codemender",
-        "project": os.getenv("GOOGLE_CLOUD_PROJECT", "your-gcp-project-id"),
+        "project": os.getenv("GOOGLE_CLOUD_PROJECT", "YOUR_PROJECT_ID"),
         "timestamp": time.time()
     }
 
@@ -213,7 +213,7 @@ ALLOWED_REPOS = parse_allowed_repos(os.getenv("ALLOWED_REPOS", ""))
 REQUIRE_INDEPENDENT_APPROVER = env_flag(os.getenv("REQUIRE_INDEPENDENT_APPROVER"), default=False)
 
 # Base URL for dashboard links on commit statuses (per-environment override).
-DASHBOARD_URL = os.getenv("DASHBOARD_URL", "https://codemender-dashboard-your-project-number.us-central1.run.app").rstrip("/")
+DASHBOARD_URL = os.getenv("DASHBOARD_URL", "https://codemender-dashboard-YOUR_PROJECT_NUMBER.us-central1.run.app").rstrip("/")
 
 BOT_EMAIL = "agent@codemender.ai"
 
@@ -635,7 +635,7 @@ async def require_maintainer(repo_name: str, commenter: str, command: str, pr_nu
 async def upload_verification_artifacts(commit_sha: str, workspace_path: str, finding_id: str) -> list[dict]:
     """Finds all files in the local .exploit/ directory of the workspace and uploads them to GCS under a finding-specific subfolder."""
     from google.cloud import storage
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "your-gcp-project-id")
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "YOUR_PROJECT_ID")
     bucket_name = f"{project_id}-artifacts"
     exploit_dir = Path(workspace_path) / ".exploit"
     
@@ -747,7 +747,7 @@ tools:
 async def export_and_upload_reports(commit_sha: str, workspace_path: str) -> dict[str, str]:
     """Generates HTML and MD reports using cm report and uploads them to GCS, returning their URLs."""
     from google.cloud import storage
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "your-gcp-project-id")
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "YOUR_PROJECT_ID")
     bucket_name = f"{project_id}-artifacts"
     html_report_path = f"/tmp/REPORT-{commit_sha}.html"
     md_report_path = f"/tmp/REPORT-{commit_sha}.md"

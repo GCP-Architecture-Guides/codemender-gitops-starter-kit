@@ -37,7 +37,7 @@ NOW = 1_800_000_000.0
 
 def _doc(sha, status, updated_at_field, task="scan"):
     return {"document": {"name": f"projects/p/databases/(default)/documents/scans/{sha}",
-                         "fields": {"status": {"stringValue": status}, "repo_name": {"stringValue": "your-org/your-repo"},
+                         "fields": {"status": {"stringValue": status}, "repo_name": {"stringValue": "YOUR_ORG/YOUR_REPO"},
                                     "active_task": {"stringValue": task}, "updated_at": updated_at_field}}}
 
 
@@ -79,7 +79,7 @@ class InflightScansTest(unittest.TestCase):
                 mock.patch.object(inflight_scans.time, "time", lambda: NOW), \
                 mock.patch("sys.stdin", io.StringIO(TOKEN + "\n")), \
                 contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            code = inflight_scans.main(["inflight_scans.py", "your-gcp-project-id"])
+            code = inflight_scans.main(["inflight_scans.py", "YOUR_PROJECT_ID"])
         self.assertNotIn(TOKEN, out.getvalue() + err.getvalue())
         return code
 

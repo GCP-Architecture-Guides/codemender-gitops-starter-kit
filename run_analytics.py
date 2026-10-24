@@ -8,7 +8,7 @@ import asyncio
 
 # Default to this deployment's telemetry project if not set in environment
 if "GOOGLE_CLOUD_PROJECT" not in os.environ:
-    os.environ["GOOGLE_CLOUD_PROJECT"] = "your-gcp-project-id"
+    os.environ["GOOGLE_CLOUD_PROJECT"] = "YOUR_PROJECT_ID"
 
 # Append backend folder to python path so it can import backend modules
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "backend"))

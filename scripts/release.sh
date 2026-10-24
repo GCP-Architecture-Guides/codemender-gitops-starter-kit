@@ -52,7 +52,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-PROJECT_ID="${PROJECT_ID:-your-gcp-project-id}"
+PROJECT_ID="${PROJECT_ID:-YOUR_PROJECT_ID}"
 REGION="${REGION:-us-central1}"
 IMAGE_REPO="${REGION}-docker.pkg.dev/${PROJECT_ID}/cloud-run-source-deploy/codemender-backend"
 read -r -a SERVICES <<< "${SERVICES:-codemender-webhook codemender-backend codemender-dashboard}"
