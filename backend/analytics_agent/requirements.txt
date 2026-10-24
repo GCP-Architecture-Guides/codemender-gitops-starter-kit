@@ -1,0 +1,6 @@
+google-genai>=2.17.0
+google-cloud-bigquery>=3.43.0
+google-cloud-aiplatform>=1.163.0
+google-adk==2.6.3
+pydantic
+cloudpickle

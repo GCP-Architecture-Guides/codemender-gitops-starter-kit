@@ -1,0 +1,56 @@
+name: CodeMender Security Gate (WIF)
+
+# Relays pull request and slash-command events to the CodeMender webhook on Cloud Run.
+#
+# Security model (plan 1.5):
+# - pull_request_target always runs main's copy of this workflow, so a PR can't change what
+#   relays its own events. The WIF provider can therefore pin job_workflow_ref to this file on
+#   refs/heads/main.
+# - Nothing from the PR is checked out or interpolated into a shell: the step only POSTs the
+#   event JSON file. The webhook re-reads every event from the GitHub API before acting on it.
+# - Only same-repository PRs are relayed (fork PRs can't mint relay tokens today either).
+# - closed is relayed so merged PRs are recorded in the remediation analytics (plan 4.4).
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, closed]
+  issue_comment:
+    types: [created]
+
+permissions:
+  id-token: write      # GitHub OIDC token for Workload Identity Federation
+  contents: read
+
+jobs:
+  codemender-trigger:
+    # PR lifecycle events from this repository, or slash commands on pull requests.
+    if: >
+      (github.event_name == 'pull_request_target' &&
+       github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+       startsWith(github.event.comment.body, '/'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate to Google Cloud via WIF
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: 'id_token'
+          workload_identity_provider: 'projects/135215686309/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'codemender-trigger@your-gcp-project-id.iam.gserviceaccount.com'
+          id_token_audience: 'https://codemender-webhook-135215686309.us-central1.run.app'
+          id_token_include_email: true
+          create_credentials_file: false
+
+      - name: Relay the event to CodeMender
+        env:
+          ID_TOKEN: ${{ steps.auth.outputs.id_token }}
+          # The webhook expects GitHub's event names; pull_request_target carries a pull_request payload.
+          EVENT_NAME: ${{ github.event_name == 'pull_request_target' && 'pull_request' || github.event_name }}
+        run: |
+          curl -sS -f -X POST "https://codemender-webhook-135215686309.us-central1.run.app/github-webhook" \
+            -H "Authorization: Bearer ${ID_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -H "X-GitHub-Event: ${EVENT_NAME}" \
+            -H "X-CodeMender-Auth: WIF" \
+            -d "@${GITHUB_EVENT_PATH}"
