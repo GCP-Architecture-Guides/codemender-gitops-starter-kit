@@ -1,0 +1,23 @@
+# .gcloudignore
+.git/
+.gitignore
+
+# Ignore node modules and local python virtual environments
+**/node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Ignore Next development builds
+frontend/.next/
+frontend/out/
+frontend/dist/
+
+# Ignore local scratch playbooks
+scratch/
+.gemini/
+.idea/
+.vscode/
+node
